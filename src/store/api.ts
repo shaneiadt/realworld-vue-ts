@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UserSubmit, UserResponse } from './models'
+import { UserSubmit, UserResponse, ArticlesResponse } from './models'
 
 export const conduitApi = axios.create({
   baseURL: 'https://conduit.productionready.io/api'
@@ -22,4 +22,9 @@ export async function loginUser (user: UserSubmit): Promise<UserResponse | undef
   } catch (error) {
     console.error(error)
   }
+}
+
+export async function getGlobalFeed () {
+  const response = await conduitApi.get('/articles')
+  return response.data as ArticlesResponse
 }
