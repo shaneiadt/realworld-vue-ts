@@ -15,7 +15,7 @@ export function clearJWT () {
 
 export async function loginUser (user: UserSubmit): Promise<UserResponse | undefined> {
   try {
-    const response = await axios.post('/users/login', {
+    const response = await conduitApi.post('/users/login', {
       user
     })
     return (response.data as UserResponse)

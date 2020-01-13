@@ -19,7 +19,7 @@
             <fieldset class="form-group">
               <input class="form-control form-control-lg" type="password" placeholder="Password" v-model="password" />
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right" @click="login">Sign up</button>
+            <button class="btn btn-lg btn-primary pull-xs-right" @click.prevent="login">Sign up</button>
           </form>
         </div>
       </div>
@@ -29,13 +29,17 @@
 
 <script lang="ts">
 import { Vue } from 'vue-property-decorator'
+import users from '@/store/modules/users'
 
 export default class Login extends Vue {
-  email = '';
-  password = '';
+  email = 'shaneiadt@gmail.com';
+  password = 'shaneiadt';
 
-  login () {
-    console.log('LOGIN')
+  login = () => {
+    users.login({
+      email: this.email,
+      password: this.password
+    })
   }
 }
 </script>
